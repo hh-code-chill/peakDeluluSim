@@ -1,0 +1,19 @@
+:root {
+  /* FONTS - scale 1.2 - https://typescale.com/ ============================================================ */
+  /* Font size */
+  --fs-h1: 2.0736rem;
+  --fs-h2: 1.728rem;
+  --fs-h3: 1.44rem;
+  --fs-h4: 1.2rem;
+  --fs-p: 1rem;
+  --fs-caption: 0.8333rem;
+  /* Line height */
+  --lh-h1: 2.5rem;
+  --lh-h2: 2.25rem;
+  --lh-h3: 2rem;
+  --lh-h4: 1.75rem;
+  --lh-p: 1.5rem;
+  --lh-caption: 1rem;
+  /* Letter spacing */
+  --ls-p: 0.025rem;
+}

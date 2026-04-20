@@ -1,0 +1,79 @@
+header {
+  margin-top: 20px;
+}
+
+.header__container {
+  padding: 0px 20px;
+  display: flex;
+
+  .header__column__left {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+
+    .header__img {
+      width: 80px;
+      height: 80px;
+      background: url(../assets/taixiulogo.ico);
+      background-position: center;
+      background-size: cover;
+      border-radius: 100px;
+      flex-shrink: 0;
+      box-shadow:
+        inset 0px -1px 1px hsla(0, 0%, 100%, 0.5),
+        0 4px 6px -1px hsla(0, 0%, 0%, 0.2),
+        0 2px 4px -2px hsla(0, 0%, 0%, 0.2),
+        inset 0px 1px 3px hsla(0, 0%, 0%, 0.1);
+    }
+
+    .header__content {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-size: var(--fs-h1);
+        line-height: var(--lh-h1);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: var(--p-950);
+      }
+
+      p {
+        font-size: var(--fs-p);
+        line-height: var(--lh-p);
+        text-transform: uppercase;
+        color: var(--p-900);
+      }
+    }
+  }
+
+  .header__column__right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 10px;
+    align-items: center;
+    justify-content: end;
+
+    .items {
+      button {
+        &:hover {
+          background-color: var(--p-100);
+          transition: all 0.5s ease;
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transition: all 0.5s ease;
+          box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    #reincarnate {
+      color: var(--u-error);
+    }
+  }
+}

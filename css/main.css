@@ -1,0 +1,60 @@
+@import url(reset.css);
+@import url(fonts.css);
+@import url(colors.css);
+@import url(header.css);
+@import url(playground.css);
+@import url(footer.css);
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: var(--fs-p);
+  line-height: var(--lh-p);
+  letter-spacing: var(--ls-p);
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--foreground);
+  /* background-image:
+    linear-gradient(hsla(var(--p-300-code), 0.1) 4px, transparent 4px),
+    linear-gradient(
+      to right,
+      hsla(var(--p-300-code), 0.1) 4px,
+      var(--background) 4px
+    );
+  background-size: 80px 80px; */
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-size: var(--fs-p);
+  line-height: var(--ln-p);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--ln-h4);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  font-family: "Space Mono", monospace;
+  font-size: var(--fs-p);
+  line-height: var(--ln-p);
+}
+
+section {
+  margin: 100px 0;
+}

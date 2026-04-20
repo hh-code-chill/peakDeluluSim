@@ -1,0 +1,197 @@
+.section__playground {
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.playground__container {
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+
+  .playground__left {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .playground__left__items {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+
+      &:nth-child(1) {
+        color: var(--u-gold);
+      }
+
+      &:nth-child(2) {
+        color: var(--u-green);
+      }
+
+      &:nth-child(3) {
+        color: var(--u-red);
+      }
+    }
+
+    /* Khi có js sẽ bỏ class p này */
+    p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+    }
+
+    button {
+      color: rgb(56, 60, 80);
+      font-weight: 600;
+      border: 1px solid hsla(var(--u-error-code), 0.3);
+      width: auto;
+      font-size: var(--fs-p);
+      line-height: var(--fs-p);
+
+      &:hover {
+        background-color: hsla(var(--u-error-code), 0.1);
+
+        color: var(--contentError);
+        transition: all 0.5s ease;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        transition: all 0.5s ease;
+        box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    h4 {
+      font-size: var(--fs-h4);
+      line-height: var(--fs-h4);
+    }
+
+    p {
+      font-size: var(--fs-p);
+      line-height: var(--fs-p);
+    }
+  }
+
+  .playground__central {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .playground__central__row1 {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 50%;
+
+      .timer-container,
+      .central__row1__bets {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid hsla(var(--u-error-code), 0.3);
+        border-radius: 10px;
+        padding: 5px;
+        text-align: center;
+        justify-content: center;
+        height: 70px;
+        width: 120px;
+
+        &:hover {
+          background-color: hsla(var(--u-error-code), 0.1);
+
+          color: var(--contentError);
+          transition: all 0.5s ease;
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transition: all 0.5s ease;
+          box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .dice-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid hsla(var(--u-error-code), 0.3);
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+      }
+    }
+
+    .playground__central__row2 {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px;
+
+      .playground_central__bets {
+        border: 1px solid var(--p-300);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h4 {
+          font-weight: 600;
+        }
+
+        &:hover {
+          background-color: var(--p-50);
+          border-color: var(--p-200);
+          transition: all 0.5s ease;
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transition: all 0.5s ease;
+          box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+    .playground__central__row3 {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+
+      button {
+        border: 1px solid hsla(var(--u-gold-code), 0.4);
+
+        &:hover {
+          background-color: rgba(255, 215, 0, 0.2);
+          border-color: #ffd700;
+          transition: all 0.5s ease;
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+          transition: all 0.5s ease;
+          box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .bet-chip {
+        &:active {
+          border: var(--u-red);
+          /* transition: all infinite ease; */
+        }
+      }
+    }
+  }
+
+  .playground__right {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

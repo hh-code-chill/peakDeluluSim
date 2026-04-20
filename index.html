@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peak Delulu Sim</title>
+
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="icon" href="./assets/logo.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header__container">
+        <div class="header__column__left">
+          <div class="header__img"></div>
+          <div class="header__content">
+            <h1>Peak delulu sim</h1>
+            <p>Game cho chos chơi!!!</p>
+          </div>
+        </div>
+
+        <div class="header__column__right">
+          <div class="items">
+            <button type="button">
+              <i class="fa-solid fa-dice"></i> Mini Game
+            </button>
+          </div>
+          <div class="items">
+            <button type="button">
+              <i class="fa-solid fa-hand-middle-finger"></i> Game Mode
+            </button>
+          </div>
+          <div class="items">
+            <button type="button">
+              <i class="fa-solid fa-floppy-disk"></i> History
+            </button>
+          </div>
+          <div class="items">
+            <button type="button">
+              <i class="fa-solid fa-circle-half-stroke"></i> Theme
+            </button>
+          </div>
+          <div class="items">
+            <button type="button">
+              <i class="fa-solid fa-volume-high"></i> Sound
+            </button>
+          </div>
+          <div class="items">
+            <button type="button" id="reincarnate">
+              <i class="fa-solid fa-book-bible"></i> Reincarnate
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Playground main-->
+    <section class="section__playground">
+      <div class="playground__container">
+        <!-- Bên trái -->
+        <div class="playground__left">
+          <div class="playground__left__items">
+            <h4>Tổng cược</h4>
+            <p><span id="val-total-bet">0</span> đ</p>
+          </div>
+
+          <div class="playground__left__items">
+            <h4>Gia sản</h4>
+            <p><span id="val-balance">123123456789</span> đ</p>
+          </div>
+
+          <div class="playground__left__items">
+            <h4>Tổng nợ</h4>
+            <p><span id="val-debt">0</span> đ</p>
+          </div>
+
+          <div class="playground__left__items">
+            <button type="button" id="btn-beg-money">Cho vay</button>
+          </div>
+        </div>
+
+        <!-- Trung tâm -->
+        <div class="playground__central">
+          <!-- Row1 -->
+          <div class="playground__central__row1">
+            <button class="timer-container">
+              <h4>Cooldown</h4>
+              <p class="timer-display"><span id="time-countdown">15</span>s</p>
+            </button>
+
+            <div class="dice-container" id="dice-plate">
+              <div class="die" id="die-1">🎲</div>
+              <div class="die" id="die-2">🎲</div>
+              <div class="die" id="die-3">🎲</div>
+            </div>
+
+            <button type="button" class="central__row1__bets" data-bet="bao">
+              <h4>BÃO</h4>
+              <p class="odds-text">1:30</p>
+              <p><span id="val-bet-bao">0</span>đ</p>
+            </button>
+          </div>
+
+          <!-- Row2 -->
+          <div class="playground__central__row2">
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>4</h4>
+              <p>1:50</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>5</h4>
+              <p>1:18</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>6</h4>
+              <p>1:14</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>7</h4>
+              <p>1:12</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>8</h4>
+              <p>1:8</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>9</h4>
+              <p>1:6</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>10</h4>
+              <p>1:6</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>11</h4>
+              <p>1:6</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>12</h4>
+              <p>1:6</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>13</h4>
+              <p>1:8</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>14</h4>
+              <p>1:12</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>15</h4>
+              <p>1:14</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>16</h4>
+              <p>1:18</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+            <button type="button" class="playground_central__bets" data-bet="4">
+              <h4>17</h4>
+              <p>1:50</p>
+              <p><span id="val-bet-4">0</span>đ</p>
+            </button>
+          </div>
+
+          <!-- Row3 -->
+          <div class="playground__central__row3">
+            <button
+              type="button"
+              id="btn-toggle-bet"
+              class="btn-action"
+              data-mode="bet"
+            >
+              <span id="text-toggle-bet">Cược</span>
+            </button>
+
+            <button type="button" class="bet-chip" data-val="1000">1K</button>
+            <button type="button" class="bet-chip" data-val="5000">5K</button>
+            <button type="button" class="bet-chip" data-val="10000">10K</button>
+            <button type="button" class="bet-chip" data-val="50000">50K</button>
+            <button type="button" class="bet-chip" data-val="100000">
+              100K
+            </button>
+            <button type="button" class="bet-chip" data-val="500000">
+              500K
+            </button>
+          </div>
+        </div>
+
+        <!-- Bên phải -->
+        <div class="playground__right">
+          <div class="chat_frame">
+            <p>Xin chào!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chart-->
+
+    <!-- Mini game -->
+    <section>
+      <div></div>
+    </section>
+
+    <!-- History-->
+    <section>
+      <div></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer__container">
+        <p>&copy; 2026 Dang Dinh Hoang | Peak Delulu Sim</p>
+        <div>
+          <a
+            href="https://hh-code-chill.github.io/portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Portfolio</a
+          >
+          <a
+            href="https://github.com/hh-code-chill/peakDeluluSim.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Github</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

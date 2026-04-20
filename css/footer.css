@@ -1,0 +1,20 @@
+footer {
+  margin-top: 10px;
+  padding: 0 20px;
+
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+
+    p,
+    a {
+      font-size: var(--fs-caption);
+      line-height: var(--ln-caption);
+      color: var(--p-950);
+      font-weight: 200;
+    }
+  }
+}
