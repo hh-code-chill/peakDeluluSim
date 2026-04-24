@@ -3,6 +3,7 @@
 @import url(colors.css);
 @import url(header.css);
 @import url(playground.css);
+@import url(popUp.css);
 @import url(footer.css);
 
 * {
@@ -57,4 +58,119 @@ button {
 
 section {
   margin: 100px 0;
+}
+
+/* Dùng trong Java Script */
+.hidden {
+  display: none !important;
+}
+
+/* ============================================================  
+media queries*/
+
+/* ============================================================ 
+   Mobile Media Query (Dành cho màn hình <= 425px)
+============================================================ */
+
+@media (max-width: 425px) {
+  :root {
+    font-size: 14px;
+  }
+
+  header,
+  .section__playground,
+  footer {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* ---------------- HEADER ---------------- */
+  .header__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+
+    .header__column__left,
+    .header__column__right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 10px;
+    }
+  }
+
+  /* ---------------- PLAYGROUND ---------------- */
+  /* Đây là mấu chốt: Cho 3 khu vực Trái - Giữa - Phải xếp chồng lên nhau */
+  .playground__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .playground__left {
+      display: flex;
+      width: 100%;
+      height: 25vh;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .playground__central {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 15px;
+
+      .playground__central__row2,
+      .playground__central__row3 {
+        display: flex;
+        flex-wrap: wrap; /* Cho phép các nút rớt xuống dòng dưới thay vì bóp méo */
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .playground__central__row2 {
+        .playground_central__bets,
+        .bet-chip {
+          flex: 1 1 20%; /* Nút chiếm khoảng 20% chiều rộng */
+          min-width: 60px; /* Đảm bảo nút không bị quá nhỏ để bấm */
+        }
+      }
+    }
+
+    .playground__right {
+      width: 100%;
+      .notification_frame {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+
+        #noti_log_result {
+          width: 90%;
+          max-height: 50vh;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+  }
+
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
 }

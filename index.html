@@ -17,6 +17,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     />
+
+    <!-- Java Script -->
+    <script src="./script.js" defer></script>
   </head>
   <body>
     <!-- Header -->
@@ -32,32 +35,27 @@
 
         <div class="header__column__right">
           <div class="items">
-            <button type="button">
-              <i class="fa-solid fa-dice"></i> Mini Game
+            <button type="button" id="buttonGameMode">
+              <i class="fa-solid fa-hand-middle-finger"></i> Game Mode (<span
+              ></span>)
             </button>
           </div>
+
           <div class="items">
-            <button type="button">
-              <i class="fa-solid fa-hand-middle-finger"></i> Game Mode
-            </button>
-          </div>
-          <div class="items">
-            <button type="button">
-              <i class="fa-solid fa-floppy-disk"></i> History
-            </button>
-          </div>
-          <div class="items">
-            <button type="button">
-              <i class="fa-solid fa-circle-half-stroke"></i> Theme
-            </button>
-          </div>
-          <div class="items">
-            <button type="button">
+            <audio id="bg_audio" loop>
+              <source src="./assets/lofi_chill.webm" type="audio/webm" />
+            </audio>
+
+            <audio id="dice_audio">
+              <source src="./assets/dice_roll.webm" type="audio/webm" />
+            </audio>
+            <button type="button" id="button_toggle_music">
               <i class="fa-solid fa-volume-high"></i> Sound
             </button>
           </div>
+
           <div class="items">
-            <button type="button" id="reincarnate">
+            <button type="button" id="buttonReincarnate">
               <i class="fa-solid fa-book-bible"></i> Reincarnate
             </button>
           </div>
@@ -72,17 +70,17 @@
         <div class="playground__left">
           <div class="playground__left__items">
             <h4>Tổng cược</h4>
-            <p><span id="val-total-bet">0</span> đ</p>
+            <p><span id="val-total-bet"></span></p>
           </div>
 
           <div class="playground__left__items">
-            <h4>Gia sản</h4>
-            <p><span id="val-balance">123123456789</span> đ</p>
+            <h4>Tiền mặt</h4>
+            <p><span id="val-cash"></span></p>
           </div>
 
           <div class="playground__left__items">
             <h4>Tổng nợ</h4>
-            <p><span id="val-debt">0</span> đ</p>
+            <p><span id="val-debt"></span></p>
           </div>
 
           <div class="playground__left__items">
@@ -94,21 +92,31 @@
         <div class="playground__central">
           <!-- Row1 -->
           <div class="playground__central__row1">
-            <button class="timer-container">
-              <h4>Cooldown</h4>
-              <p class="timer-display"><span id="time-countdown">15</span>s</p>
+            <button type="button" class="timer-container" id="button-countdown">
+              <h4>Countdown</h4>
+              <p class="timer-display"><span id="time-countdown"></span></p>
             </button>
 
-            <div class="dice-container" id="dice-plate">
-              <div class="die" id="die-1">🎲</div>
-              <div class="die" id="die-2">🎲</div>
-              <div class="die" id="die-3">🎲</div>
-            </div>
+            <button type="button" class="dice-container" id="dice-plate">
+              <div class="dices">
+                <span class="die" id="die-0"></span>
+                <span class="die" id="die-1"></span>
+                <span class="die" id="die-2"></span>
+              </div>
 
-            <button type="button" class="central__row1__bets" data-bet="bao">
+              <div class="bowl locked" id="bowl">
+                <img src="./assets/bat_vang.webp" alt="Cái đĩa" />
+              </div>
+            </button>
+
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="storm"
+            >
               <h4>BÃO</h4>
               <p class="odds-text">1:30</p>
-              <p><span id="val-bet-bao">0</span>đ</p>
+              <p><span id="val-bet-storm"></span>k</p>
             </button>
           </div>
 
@@ -117,72 +125,104 @@
             <button type="button" class="playground_central__bets" data-bet="4">
               <h4>4</h4>
               <p>1:50</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-4"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button type="button" class="playground_central__bets" data-bet="5">
               <h4>5</h4>
               <p>1:18</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-5"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button type="button" class="playground_central__bets" data-bet="6">
               <h4>6</h4>
               <p>1:14</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-6"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button type="button" class="playground_central__bets" data-bet="7">
               <h4>7</h4>
               <p>1:12</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-7"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button type="button" class="playground_central__bets" data-bet="8">
               <h4>8</h4>
               <p>1:8</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-8"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button type="button" class="playground_central__bets" data-bet="9">
               <h4>9</h4>
               <p>1:6</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-9"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="10"
+            >
               <h4>10</h4>
               <p>1:6</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-10"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="11"
+            >
               <h4>11</h4>
               <p>1:6</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-11"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="12"
+            >
               <h4>12</h4>
               <p>1:6</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-12"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="13"
+            >
               <h4>13</h4>
               <p>1:8</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-13"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="14"
+            >
               <h4>14</h4>
               <p>1:12</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-14"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="15"
+            >
               <h4>15</h4>
               <p>1:14</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-15"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="16"
+            >
               <h4>16</h4>
               <p>1:18</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-16"></span>k</p>
             </button>
-            <button type="button" class="playground_central__bets" data-bet="4">
+            <button
+              type="button"
+              class="playground_central__bets"
+              data-bet="17"
+            >
               <h4>17</h4>
               <p>1:50</p>
-              <p><span id="val-bet-4">0</span>đ</p>
+              <p><span id="val-bet-17"></span>k</p>
             </button>
           </div>
 
@@ -212,24 +252,61 @@
 
         <!-- Bên phải -->
         <div class="playground__right">
-          <div class="chat_frame">
-            <p>Xin chào!</p>
+          <div class="notification_frame">
+            <p>Kết quả: <span id="noti_result_3dice"></span></p>
+            <p>
+              Điểm: <span id="noti_total_result"></span> -
+              <span id="noti_result_bigsmall"></span>
+            </p>
+            <div id="noti_log_result"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Chart-->
+    <!-- Reincarnate -->
+    <div class="pop_up" id="reincarnate__container">
+      <p>
+        Chọn <span>Reset nhân phẩm</span> đồng nghĩa với bạn chấp nhận mình đã
+        vỡ nợ và sẽ đầu thai làm con bạc mới!
+      </p>
+      <button type="button" class="pop_up_close" id="reincarnate-off">
+        Còn thở là còn gỡ
+      </button>
+      <button type="button" class="pop_up_comfirm" id="reincarnate-on">
+        Reset nhân phẩm
+      </button>
+    </div>
 
-    <!-- Mini game -->
-    <section>
-      <div></div>
-    </section>
-
-    <!-- History-->
-    <section>
-      <div></div>
-    </section>
+    <!-- Lend money -->
+    <from class="pop_up" id="lend_money">
+      <p>
+        - Kính thưa thần tài! Con quá nghèo, xin hãy bố thí cho con ít bạc.
+        <i class="fa-regular fa-face-sad-cry"></i>
+      </p>
+      <p>
+        - Cho ta một con số, ta sẽ thỏa mãn con.
+        <i class="fa-regular fa-credit-card"></i>
+      </p>
+      <p>
+        - Con chỉ xin
+        <input
+          type="number"
+          id="input_lend_money"
+          placeholder="1000"
+          required
+        />đ mà thôi!
+        <i class="fa-regular fa-face-grin-stars"></i>
+      </p>
+      <div class="buttons">
+        <button type="button" class="pop_up_close" id="lend_money_off">
+          Quay đầu là bờ!
+        </button>
+        <button type="submit" class="pop_up_comfirm" id="confirm_lend_money">
+          Tôi bị ngu!
+        </button>
+      </div>
+    </from>
 
     <!-- Footer -->
     <footer>

@@ -61,5 +61,24 @@ peak-delulu-sim/
 ├── style.css # Định dạng & Theme
 ├── script.js # Logic "gian lận" & Xử lý game
 └── README.md # Tài liệu hướng dẫn
+
 💡 Thông điệp từ tác giả
 Dự án này được thực hiện bởi Đặng Đình Hoàng - sinh viên CNTT với mục tiêu chống trì hoãn và rèn luyện kỹ năng lập trình thực tế. Thông qua Peak Delulu Sim, tôi muốn gửi gắm châm ngôn: "Tự kỷ luật sẽ đem đến tự do". Đừng để những con số ảo trên màn hình điều khiển cuộc đời bạn.
+
+Dưới đây là bảng tỉ lệ (Payout Ratio) chuẩn của các sòng bài/web lậu dùng để làm hệ số nhân tiền:
+
+| Tổng Điểm          | Số Tổ Hợp Thực Tế (Đã trừ Bão) | Xác Suất Ra       | Tỉ lệ ăn đề xuất (Hệ số của Sir)     |
+| :----------------- | :----------------------------- | :---------------- | :----------------------------------- |
+| **4** hoặc **17**  | 3 / 216                        | $\approx 1.38\%$  | **1 ăn 50** (Vốn 1k, trúng được 50k) |
+| **5** hoặc **16**  | 6 / 216                        | $\approx 2.77\%$  | **1 ăn 18**                          |
+| **6** hoặc **15**  | 9 / 216                        | $\approx 4.16\%$  | **1 ăn 14**                          |
+| **7** hoặc **14**  | 15 / 216                       | $\approx 6.94\%$  | **1 ăn 12**                          |
+| **8** hoặc **13**  | 21 / 216                       | $\approx 9.72\%$  | **1 ăn 8**                           |
+| **9** hoặc **12**  | 25 / 216                       | $\approx 11.57\%$ | **1 ăn 6**                           |
+| **10** hoặc **11** | 27 / 216                       | $\approx 12.50\%$ | **1 ăn 6**                           |
+
+**Đối với cửa Bão (Triple):**
+Để dễ làm giao diện, tôi sẽ gộp thành **"Bão Bất Kỳ"** (Ra 1-1-1 hay 6-6-6 đều trúng).
+
+- **Xác suất:** Có 6 tổ hợp Bão trên tổng 216 $\rightarrow 6/216 \approx 2.77\%$.
+- **Hệ số cược (Payout):** để **1 ăn 30**. (Nhìn thì có vẻ cao, nhưng xác suất ra thực tế rất thấp, nhà cái luôn có lời).
