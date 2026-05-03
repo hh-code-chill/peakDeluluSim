@@ -1,84 +1,143 @@
-# peakDeluluSim
+# ChatbotAI360 - Kế Hoạch Sửa Lỗi và Cấu Hình
 
-Sử dụng HTML CSS JS giả lập game tài sửu không thể win
+## Context (Bối Cảnh)
 
-🎲 Peak Delulu Sim
-"Chỉ người không chơi mới là người thắng."
+Dự án ChatbotAI360 là một ứng dụng chatbot tiếng Việt cho lĩnh vực nội thất, bao gồm backend Rasa và frontend PHP. Dự án được lấy từ kho lưu trữ có sẵn nhưng sử dụng các module Rasa lỗi thời và có nhiều cấu hình không phù hợp cho thiết bị Windows hiện tại. Cần sửa các lỗi này để ứng dụng có thể chạy được trên web và kết nối với API chatbot.
 
-📌 Giới thiệu dự án
-Peak Delulu Sim là một trình giả lập trò chơi cá cược (Tài Xỉu/Sic Bo) được tạo ra không phải để giải trí, mà để vạch trần bộ mặt thật của các trang web cá cược lậu. Dự án sử dụng toán học và các thuật toán "can thiệp" để chứng minh rằng: Dù bạn có chiến thuật gì, nhà cái luôn là người thắng cuối cùng.
+## Các Lỗi Chính Được Xác Định
 
-Cảnh báo: Game mang tính chất giáo dục cao, có khả năng gây "cay cú" cực độ cho bạn bè của bạn.
+### **LỖI 1: Module Rasa Lỗi Thời (CRITICAL)**
 
-🛠 Công nghệ sử dụng
-Dự án được xây dựng thuần túy với bộ ba "huyền thoại" của Web Beginner, không sử dụng Framework để tối ưu việc học tập:
+- **Vị trí:** `Chatbot AI/AI_chatbotbot/startsvr.sh` (dòng 2-3)
+- **Vấn đề:** Script sử dụng `rasa_core.run` nhưng dự án cài Rasa 3.6.15 không có module này
+- **Cách sửa:** Thay thế bằng lệnh `rasa run` và `rasa run actions`
 
-HTML5: Cấu trúc giao diện bảng cược.
+### **LỖI 2: Xung Đột Cổng (Port Conflict)**
 
-CSS3: Thiết kế hiệu ứng giao diện (Animation xúc sắc, Dark mode, Neon themes).
+- **Vị trí:** `startsvr.sh` và `noithat360/includes/footer.php`
+- **Vấn đề:** Script chạy Rasa trên port 80, nhưng frontend chờ port 5005
+- **Cách sửa:** Sửa script để chạy trên port 5005 hoặc cập nhật frontend
 
-JavaScript (Vanilla): Xử lý logic xác suất, quản lý trạng thái trò chơi và can thiệp kết quả.
+### **LỖI 3: Shell Script Không Tương Thích Windows**
 
-📜 Quy tắc chơi (The Sic Bo Logic)
-Game sử dụng 3 viên xúc sắc (mỗi viên 6 mặt). Kết quả dựa trên tổng điểm:
+- **Vị trí:** Tất cả file `.sh` (startsvr.sh, stop.sh)
+- **Vấn đề:** File bash shell không chạy trên Windows
+- **Cách sửa:** Tạo file `start.bat` và `stop.bat` cho Windows
 
-Xỉu (Small): Tổng điểm từ 4 đến 10.
+### **LỖI 4: Cấu Hình Cứng (Hardcoded URLs)**
 
-Tài (Big): Tổng điểm từ 11 đến 17.
+- **Vị trí:** `endpoints.yml`, `footer.php`, `db.php`
+- **Vấn đề:** URLs, ports, DB credentials cứng, không linh hoạt
+- **Cách sửa:** Tạo file `.env` để quản lý cấu hình
 
-Cược Tổng (Specific Total): Cược một con số cụ thể từ 4 đến 17 (tỉ lệ ăn cao hơn nhưng cực khó trúng).
+### **LỖI 5: Thiếu Cơ Sở Dữ Liệu MySQL**
 
-Luật Nhà Cái (The Trap): Nếu 3 viên xúc sắc ra cùng một số (ví dụ: 1-1-1, 2-2-2...), tất cả các cửa Tài và Xỉu đều THUA. Tiền về túi nhà cái.
+- **Vị trí:** `noithat360/config/db.php`
+- **Vấn đề:** Cơ sở dữ liệu `noithat` chưa được tạo
+- **Cách sửa:** Cung cấp hướng dẫn tạo database
 
-🚀 Tính năng nổi bật
+### **LỖI 6: Port 80 Yêu Cầu Quyền Admin**
 
-1. Hệ thống Game Mode (GM) độc bản
-   GM1 - Bạn chắc chứ? (Default): Thuật toán tự động soi cửa bạn đặt và ép kết quả ra ngược lại. Tỉ lệ thắng của bạn xấp xỉ 0%.
+- **Vị trí:** `startsvr.sh`
+- **Vấn đề:** Port 80 trên Windows/Linux cần quyền admin
+- **Cách sửa:** Sử dụng port 5005 hoặc port cao hơn 1024
 
-GM2 - Thường thôi.: Chế độ dành cho những người tin vào vận may (sử dụng Math.random() thuần túy).
+### **LỖI 7: CORS Bảo Mật (Open to All)**
 
-GM3 - Tôi quá gà!: Chế độ buff tỉ lệ thắng lên cực cao để trải nghiệm cảm giác "vua trò chơi" trước khi bị GM1 vùi dập.
+- **Vị trí:** `startsvr.sh` với `--cors '*'`
+- **Vấn đề:** Cho phép tất cả origin truy cập, bất an toàn cho production
+- **Cách sửa:** Cấu hình CORS chỉ cho phép origin cụ thể
 
-2. Tùy chỉnh giao diện linh hoạt
-   Addictive Mode: Giao diện Đỏ - Vàng rực rỡ, kích thích lòng tham giống hệt các web lậu.
+### **LỖI 8: Trang Admin Trống (Incomplete)**
 
-Boring/Modern Mode: Giao diện tối giản, nhàm chán để bạn nhận ra bản chất của cờ bạc chỉ là những con số vô hồn.
+- **Vị trí:** `noithat360/admin/dashboard.php`, `products.php`
+- **Vấn đề:** File trống, không thực hiện tính năng nào
+- **Cách sửa:** Tạo file cấu hình để tắt admin hoặc hoàn thành chức năng
 
-3. Thông điệp "sát thương" cao
-   Thua: "Bạn đã tan cửa nát nhà vì cờ bạc", "Lêu lêu đồ thua cuộc".
+## Kế Hoạch Sửa Chi Tiết
 
-Thắng: "Đến đây thôi, quay đầu là bờ", "Không có gì vui cả, rồi bạn sẽ mất lại thôi".
+### **Bước 1: Tạo File Cấu Hình .env**
 
-4. Bảo mật & Dữ liệu
-   Local Storage Only: Toàn bộ điểm số, lịch sử chỉ lưu tại trình duyệt của bạn. Không ai theo dõi, không có server.
+- Tạo `Chatbot AI/AI_chatbotbot/.env`
+- Định nghĩa: `RASA_PORT=5005`, `ACTION_PORT=5055`, `ACTION_URL=http://localhost:5055`
+- Cấu hình PHP: `DB_HOST=localhost`, `DB_USER=root`, `DB_PASS=`, `DB_NAME=noithat`
 
-Panic Button: Nút "Xóa toàn bộ dữ liệu" để khôi phục nhân phẩm về số điểm 0 tròn trĩnh ban đầu.
+### **Bước 2: Cập Nhật `endpoints.yml`**
 
-📂 Cấu trúc thư mục tham khảo
-Plaintext
-peak-delulu-sim/
-├── index.html # Giao diện chính
-├── style.css # Định dạng & Theme
-├── script.js # Logic "gian lận" & Xử lý game
-└── README.md # Tài liệu hướng dẫn
+- Sửa URL action endpoint để sử dụng biến môi trường
+- File: `Chatbot AI/AI_chatbotbot/endpoints.yml`
 
-💡 Thông điệp từ tác giả
-Dự án này được thực hiện bởi Đặng Đình Hoàng - sinh viên CNTT với mục tiêu chống trì hoãn và rèn luyện kỹ năng lập trình thực tế. Thông qua Peak Delulu Sim, tôi muốn gửi gắm châm ngôn: "Tự kỷ luật sẽ đem đến tự do". Đừng để những con số ảo trên màn hình điều khiển cuộc đời bạn.
+### **Bước 3: Sửa `startsvr.sh` (Dành cho Linux/Mac)**
 
-Dưới đây là bảng tỉ lệ (Payout Ratio) chuẩn của các sòng bài/web lậu dùng để làm hệ số nhân tiền:
+- Thay `rasa_core_sdk.endpoint` → `rasa run actions`
+- Thay `rasa_core.run` → `rasa run`
+- Đổi port từ 80 → 5005
+- Cấu hình CORS với giới hạn
 
-| Tổng Điểm          | Số Tổ Hợp Thực Tế (Đã trừ Bão) | Xác Suất Ra       | Tỉ lệ ăn đề xuất (Hệ số của Sir)     |
-| :----------------- | :----------------------------- | :---------------- | :----------------------------------- |
-| **4** hoặc **17**  | 3 / 216                        | $\approx 1.38\%$  | **1 ăn 50** (Vốn 1k, trúng được 50k) |
-| **5** hoặc **16**  | 6 / 216                        | $\approx 2.77\%$  | **1 ăn 18**                          |
-| **6** hoặc **15**  | 9 / 216                        | $\approx 4.16\%$  | **1 ăn 14**                          |
-| **7** hoặc **14**  | 15 / 216                       | $\approx 6.94\%$  | **1 ăn 12**                          |
-| **8** hoặc **13**  | 21 / 216                       | $\approx 9.72\%$  | **1 ăn 8**                           |
-| **9** hoặc **12**  | 25 / 216                       | $\approx 11.57\%$ | **1 ăn 6**                           |
-| **10** hoặc **11** | 27 / 216                       | $\approx 12.50\%$ | **1 ăn 6**                           |
+### **Bước 4: Tạo File Batch cho Windows**
 
-**Đối với cửa Bão (Triple):**
-Để dễ làm giao diện, tôi sẽ gộp thành **"Bão Bất Kỳ"** (Ra 1-1-1 hay 6-6-6 đều trúng).
+- Tạo `start.bat` cho khởi động trên Windows
+- Tạo `stop.bat` để dừng dịch vụ
+- Cấu hình tương tự file shell
 
-- **Xác suất:** Có 6 tổ hợp Bão trên tổng 216 $\rightarrow 6/216 \approx 2.77\%$.
-- **Hệ số cược (Payout):** để **1 ăn 30**. (Nhìn thì có vẻ cao, nhưng xác suất ra thực tế rất thấp, nhà cái luôn có lời).
+### **Bước 5: Cập Nhật Frontend**
+
+- Sửa `noithat360/includes/footer.php`
+- Đọc port từ `.env` thay vì hardcode
+- Thêm error handling khi kết nối chatbot
+
+### **Bước 6: Tạo Script Tạo Database**
+
+- Tạo `setup-db.sql`
+- Định nghĩa cấu trúc bảng cho `noithat` database
+- Cung cấp hướng dẫn import
+
+### **Bước 7: Tạo Documentation**
+
+- Tạo `SETUP.md` hướng dẫn:
+  - Cài Python 3.10+
+  - Cài MySQL
+  - Khởi chạy ứng dụng
+  - Cấu hình cơ sở dữ liệu
+  - Truy cập ứng dụng
+
+### **Bước 8: Tạo requirements.txt**
+
+- Đảm bảo `rasa==3.6.15` được cài chính xác
+- Xuất danh sách tất cả dependencies
+
+## File Sẽ Được Sửa/Tạo
+
+| File                             | Hành Động | Lý Do                        |
+| -------------------------------- | --------- | ---------------------------- |
+| `.env` (mới)                     | Tạo       | Quản lý cấu hình             |
+| `.env.example` (mới)             | Tạo       | Template cho người khác      |
+| `startsvr.sh`                    | Sửa       | Cập nhật Rasa command + port |
+| `stop.sh`                        | Sửa       | Cập nhật stop process        |
+| `start.bat` (mới)                | Tạo       | Support Windows              |
+| `stop.bat` (mới)                 | Tạo       | Support Windows              |
+| `endpoints.yml`                  | Sửa       | Dùng biến môi trường         |
+| `noithat360/includes/footer.php` | Sửa       | Đọc port từ .env             |
+| `noithat360/config/db.php`       | Sửa       | Đọc DB config từ .env        |
+| `setup-db.sql` (mới)             | Tạo       | Tạo database                 |
+| `requirements.txt` (mới)         | Tạo       | Dependencies                 |
+| `SETUP.md` (mới)                 | Tạo       | Hướng dẫn setup              |
+| `noithat360/admin/dashboard.php` | Sửa       | Thêm thông báo hoặc tắt      |
+
+## Xác Minh & Test
+
+1. **Kiểm tra Python Environment:** Python 3.10+ cài sẵn
+2. **Cài Dependencies:** Chạy `pip install -r requirements.txt`
+3. **Khởi động Backend:** Chạy `start.bat` (Windows) hoặc `bash startsvr.sh` (Linux)
+4. **Kiểm tra Port:** Xác nhận Rasa chạy trên port 5005
+5. **Test Frontend:** Truy cập `http://localhost:8000/noithat360/index.php`
+6. **Test Chatbot Widget:** Kiểm tra widget chat có hiển thị và kết nối
+7. **Test Database:** Kiểm tra PHP có kết nối MySQL thành công
+8. **Test Message:** Gửi tin nhắn qua chatbot widget
+
+## Ghi Chú Bổ Sung
+
+- **Yêu cầu:** MySQL Server chạy trên localhost:3306
+- **Yêu cầu:** Python 3.10+ với pip
+- **Port Mặc Định:** 5005 (Rasa), 5055 (Actions), 8000 (PHP dev server tùy chọn)
+- **CORS Sản Xuất:** Nên cấu hình cụ thể domain thay vì `*`
